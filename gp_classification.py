@@ -39,7 +39,7 @@ with covariance matrix given as previously stated
 
 NOTE:
 Uses crabs data set:
-https://vincentarelbundock.github.io/Rdatasets/datasets.html
+https://github.com/blei-lab/edward/tree/master/examples/data
 """
 import numpy as np
 import pandas as pd
@@ -54,24 +54,17 @@ plt.style.use('ggplot')
 ed.set_seed(42)
 
 # ===== Data =====
-data = pd.read_csv('./data/crabs.csv',
-                   index_col=[0, 3])
-
-data.ix[data.sp == 'B', 'sp'] = 0   # Blue --> 0
-data.ix[data.sp == 'O', 'sp'] = 1   # Orange --> 1
-data.ix[data.sex == 'M', 'sex'] = 0   # Male --> 0
-data.ix[data.sex == 'F', 'sex'] = 1   # Female --> 1
-
-data[['sp', 'sex']] = data[['sp', 'sex']].apply(pd.to_numeric)
+data = np.loadtxt('data/crabs_train.txt', delimiter=',')
+data[data[:, 0] == -1, 0] = 0  # replace -1 label with 0 label
 
 N = data.shape[0]  # number of data points
 D = data.shape[1] - 1  # number of features
 
+X_train = data[:, 1:]
+y_train = data[:, 0]
+
 print("Number of data points: {}".format(N))
 print("Number of features: {}".format(D))
-
-X_train = data.as_matrix(columns=data.keys()[1:])
-y_train = np.squeeze(data.as_matrix(columns=[data.keys()[0]]))
 
 # ===== Model =====
 X = tf.placeholder(tf.float32, [N, D])
