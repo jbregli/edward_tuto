@@ -29,6 +29,10 @@ We specify fully factorized normal approximations for the random effects and pas
 all training data for inference.
 Under the algorithm, the fixed effects will be estimated under a variational EM scheme.
 
+NOTE:
+Uses InstEval data set:
+https://github.com/blei-lab/edward/blob/master/examples/data/insteval.csv
+
 """
 import edward as ed
 import pandas as pd

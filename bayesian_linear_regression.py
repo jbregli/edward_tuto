@@ -4,7 +4,7 @@ EDWARD TUTORIAL: bayesian linear regression
 
 In supervised learning, the task is to infer hidden structure from labeled data,
 comprised of training examples $\{(x_n, y_n)\}$.
-Regression typically means the output yy takes continuous values.
+Regression typically means the output y takes continuous values.
 
 Posit the model as Bayesian linear regression (Murphy, 2012). It assumes a linear
 relationship between the inputs $\mathbf{x} \in \mathbb{R}^{D}$​ and the outputs
